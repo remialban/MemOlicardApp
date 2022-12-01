@@ -15,7 +15,7 @@ void main() {
       runApp(const LoginPage());
     }
     else {
-      runApp(MyApp());
+      runApp(const MyApp());
     }
   });
 
@@ -23,6 +23,8 @@ void main() {
 
 class MyApp extends StatefulWidget
 {
+  const MyApp({super.key});
+
 
   @override
   State createState() {
@@ -49,8 +51,8 @@ class MyAppState extends State<MyApp> {
         title: 'MemOlicard',
         theme: themeData,
         routes: {
-          "/home": (context) => ListsPage(),
-          "/settings": (context) => SettingsPage(),
+          "/home": (context) => const ListsPage(),
+          "/settings": (context) => const SettingsPage(),
         },
         home: Scaffold(
           appBar: AppBar(
