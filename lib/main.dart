@@ -3,22 +3,61 @@ import 'package:memolicard_app/pages/dashboard/settings/settings.dart';
 import 'package:memolicard_app/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:memolicard_app/widgets/app.dart';
+import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'CartModel.dart';
 import 'pages/login/login.dart';
 
 void main() {
+  runApp(
+      ChangeNotifierProvider(
+          create: (context) => CartModel(),
+          child: Truc()
+      )
+  );
+  print("coucou");
   SharedPreferences.getInstance().then((prefs) {
+    print("coucou2");
+
     if (prefs.getString("token") == null)
     {
-      runApp(const LoginPage());
+      print("coucou3");
+
+      // runApp(const LoginPage());
+      runApp(
+        ChangeNotifierProvider(
+          create: (context) => CartModel(),
+          child: Truc()
+        )
+      );
     }
     else {
+      print("coucou4");
+
       runApp(const MyApp());
     }
   });
 
+}
+
+class Truc extends StatelessWidget {
+  const Truc({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CartModel>(
+      builder: (context, cart, child) {
+        if (cart.connected)
+          {
+            return MyApp();
+          }
+        return LoginPage();
+      }
+    );
+  }
 }
 
 class MyApp extends StatefulWidget

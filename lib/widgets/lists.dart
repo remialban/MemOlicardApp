@@ -1,11 +1,14 @@
 import 'package:memolicard_app/widgets/variables.dart';
 import 'package:flutter/material.dart';
 
-class ListCards extends StatelessWidget
+import '../domain/cards_lists/cards_lists.dart';
+
+class ListCardsWidget extends StatelessWidget
 {
   int index;
+  CardsList cardsList;
 
-  ListCards({super.key, required this.index});
+  ListCardsWidget({super.key, required this.index, required this.cardsList});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +30,16 @@ class ListCards extends StatelessWidget
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
-            children: const [
-              Text("Allemand",
-                style: TextStyle(
+            children: [
+              Text(cardsList.name,
+                style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black
                 ),
 
               ),
               Text("Etudié hier",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black
                 )
