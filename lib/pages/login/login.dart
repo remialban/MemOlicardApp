@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memolicard_app/CartModel.dart';
 import 'package:memolicard_app/widgets/app.dart';
@@ -10,12 +9,12 @@ import '../../domain/authentication/authentication.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
-
   @override
   State createState() {
     return LoginPageState();
   }
 }
+
 class LoginPageState extends State<LoginPage> {
   String username = "";
   String password = "";
@@ -23,15 +22,6 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getString("token") == null)
-      {
-        print("Pas connecté");
-      }
-      else {
-        print("Connecté");
-      }
-    });
     return Consumer<CartModel>(
       builder: (context, cart, child) {
         return MaterialApp(
@@ -49,14 +39,14 @@ class LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 20),
                           TextField(
                               enabled: !isLoading,
+                              decoration: const InputDecoration(
+                                label: Text("Nom d'utiliasateur / Email"),
+                              ),
                               onChanged: (value) {
                                 setState(() {
                                   username = value;
                                 });
                               },
-                              decoration: const InputDecoration(
-                                label: Text("Nom d'utiliasateur / Email"),
-                              )
                           ),
                           const SizedBox(height: 20),
 
@@ -82,7 +72,6 @@ class LoginPageState extends State<LoginPage> {
                               setState(() {
                                 isLoading = true;
                               });
-
                               Authenticator.check(
                                   username: username,
                                   password: password,
@@ -111,8 +100,5 @@ class LoginPageState extends State<LoginPage> {
         );
       },
     );
-
-
   }
-
 }
