@@ -17,14 +17,9 @@ void main() {
           child: Truc()
       )
   );
-  print("coucou");
   SharedPreferences.getInstance().then((prefs) {
-    print("coucou2");
-
     if (prefs.getString("token") == null)
     {
-      print("coucou3");
-
       // runApp(const LoginPage());
       runApp(
         ChangeNotifierProvider(
@@ -34,8 +29,6 @@ void main() {
       );
     }
     else {
-      print("coucou4");
-
       runApp(const MyApp());
     }
   });

@@ -83,7 +83,7 @@ class LoginPageState extends State<LoginPage> {
                                     });
                                     cart.connect();
                                   },
-                                  onFailure: (p0) => print("Erreur !")
+                                  onFailure: (p0) => {}
                               );
                             },
                             style: ButtonStyle(
