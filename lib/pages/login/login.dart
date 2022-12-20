@@ -57,6 +57,7 @@ class LoginPageState extends State<LoginPage> {
                                   password = value;
                                 });
                               },
+                              obscureText: true,
                               decoration: const InputDecoration(
                                 label: Text("Mot de passe"),
                               )
