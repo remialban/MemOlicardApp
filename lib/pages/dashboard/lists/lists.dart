@@ -21,21 +21,18 @@ class ListsPageState extends State<ListsPage>
 
   Future<void> updateLists() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var listRepo = CardsListsRepository(token: prefs.getString("token").toString());
-    var value = await listRepo.get_all();
+    var listRepo = CardsListsRepository();
+    var value = await listRepo.getAll();
 
     setState(() {
       lists = value!;
-      print(lists);
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     updateLists();
-    print("coucuo");
   }
   @override
   Widget build(BuildContext context) {
@@ -50,7 +47,7 @@ class ListsPageState extends State<ListsPage>
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 34, vertical: 9),
-            child: Text("Listes non classés", style: heading1TextStyle, textAlign: TextAlign.start),
+            child: const Text("Listes non classés", style: heading1TextStyle, textAlign: TextAlign.start),
 
           ),
           Flexible(
@@ -63,7 +60,7 @@ class ListsPageState extends State<ListsPage>
 
 
               ListView.separated(
-                  padding: EdgeInsets.fromLTRB(34, 0, 34, 90),
+                  padding: const EdgeInsets.fromLTRB(34, 0, 34, 90),
                   itemBuilder: (context, index) {
                     return ListCardsWidget(index: index, cardsList: lists[index]);
                   },

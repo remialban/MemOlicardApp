@@ -1,8 +1,23 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Authenticator
 {
+  static Future<String> getToken() async
+  {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString("token");
+
+    if (token == null) {
+      return "";
+    }
+
+    return token;
+  }
+
   static void check({
       required String username,
       required String password,
@@ -10,7 +25,7 @@ class Authenticator
       required Function(http.Response) onFailure
   }) async
   {
-    Uri url = Uri.http("localhost:8000", "api/login_check");
+    Uri url = Uri.http("192.168.0.71:8000", "api/login_check");
 
     var body = {
       "username": username,

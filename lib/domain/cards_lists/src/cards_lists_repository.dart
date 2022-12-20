@@ -1,43 +1,23 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:memolicard_app/domain/api/api.dart';
 
 import 'cards_list.dart';
 
 class CardsListsRepository {
 
-  String token;
-
-  CardsListsRepository({required this.token});
-
-  Future<List<CardsList>?> get_all() async
+  Future<List<CardsList>?> getAll() async
   {
-    Uri url = Uri.http("localhost:8000", "api/cards_lists");
+    Api api = Api(apiException: DevelopementApiException());
+    var response = await api.getCollection("cards_lists");
+    List listsData = response['hydra:member'];
 
-    http.Response response = await http.get(url, headers: {
-      "Authorization": "Bearer $token"
-    });
+    List<CardsList> cardsLists = [];
 
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-
-      List<dynamic> listsData = data['hydra:member'];
-      List<CardsList> lists = [];
-
-      listsData.forEach((e) {
-        CardsList cardsList = CardsList(
-          name: e['name'],
-          createdAt: DateTime(2020),
-          updatedAt: DateTime(2020),
-          id: e['id'],
-        );
-        lists.add(cardsList);
-      });
-      return lists;
-    } else {
-      print("Erreur");
+    for (var cardsList in listsData) {
+      cardsLists.add(
+        CardsList(name: cardsList["name"], createdAt: DateTime(2022), updatedAt: DateTime(2022), id: cardsList['id'])
+      );
     }
 
-
+    return cardsLists;
   }
 }
