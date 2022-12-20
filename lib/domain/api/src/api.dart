@@ -32,10 +32,9 @@ class Api
 
   Uri _getUri({required String domain})
   {
-    return Uri(
-      host: "192.168.0.71",
-      port: 8000,
-      path: "api/$domain"
+    return Uri.http(
+      "192.168.0.71:8000",
+      "/api/$domain",
     );
   }
 }
