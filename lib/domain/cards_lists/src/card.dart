@@ -6,6 +6,11 @@ class Card {
   String side = "front";
   int currentBoxNumber = 1;
 
-  Card(this.id, this.frontValue, this.backValue, this.side,
-      this.currentBoxNumber);
+  Card({
+    this.id,
+    required this.frontValue,
+    required this.backValue,
+    required this.side,
+    required this.currentBoxNumber
+  });
 }

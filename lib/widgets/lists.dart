@@ -47,7 +47,7 @@ class ListCardsWidget extends StatelessWidget
             ],
           ),
 
-          Text("$index\ncartes",
+          Text("${cardsList.numberOfCards()}\ncartes",
             style: const TextStyle(
               fontSize: 16,
               color: Colors.black
