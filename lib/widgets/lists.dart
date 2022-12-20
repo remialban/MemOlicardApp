@@ -1,3 +1,4 @@
+import 'package:memolicard_app/pages/dashboard/lists/pages/show_list.dart';
 import 'package:memolicard_app/widgets/variables.dart';
 import 'package:flutter/material.dart';
 
@@ -12,51 +13,63 @@ class ListCardsWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(3)),
-        border: Border.all(color: materialColor.shade200),
-        color: Colors.white,
-      ),
-      height: 77,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        verticalDirection: VerticalDirection.down,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text(cardsList.name,
-                style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black
-                ),
-
-              ),
-              Text("Etudié hier",
-                  style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.black
-                )
-              ),
-            ],
-          ),
-
-          Text("${cardsList.numberOfCards()}\ncartes",
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black
+    return
+      GestureDetector(
+        onTap: () {
+          print("Salut ${cardsList.name}");
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ShowListPage(cardsList: cardsList),
             ),
-            textAlign: TextAlign.center
-          )
+          );
 
-        ],
-      ),
+        },
+        child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(3)),
+          border: Border.all(color: materialColor.shade200),
+          color: Colors.white,
+        ),
+        height: 77,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          verticalDirection: VerticalDirection.down,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                Text(cardsList.name,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black
+                  ),
+
+                ),
+                Text("Etudié hier",
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.black
+                  )
+                ),
+              ],
+            ),
+
+            Text("${cardsList.numberOfCards()}\ncartes",
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.black
+              ),
+              textAlign: TextAlign.center
+            )
+
+          ],
+        ),
+      )
     );
   }
 }
