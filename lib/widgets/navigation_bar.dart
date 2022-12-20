@@ -22,7 +22,6 @@ class NavigationBarState extends State<Navigation>
 
   @override
   Widget build(BuildContext context) {
-    print(index);
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
