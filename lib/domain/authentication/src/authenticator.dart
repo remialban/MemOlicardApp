@@ -25,7 +25,7 @@ class Authenticator
       required Function(http.Response) onFailure
   }) async
   {
-    Uri url = Uri.http("192.168.0.71:8000", "api/login_check");
+    Uri url = Uri.http("192.168.0.60:8000", "api/login_check");
 
     var body = {
       "username": username,

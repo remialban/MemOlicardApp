@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memolicard_app/pages/dashboard/lists/pages/pages/edit_list.dart';
 
 import '../../../../domain/cards_lists/src/cards_list.dart';
 
@@ -19,7 +20,17 @@ class ShowListPageState extends State<ShowListPage> {
          appBar: AppBar(
           title: Text(widget.cardsList.name),
          ),
-        body: const Text("Salut tout le monde!"),
+        body: MaterialButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => EditListPage(cardsList: widget.cardsList),
+              ),
+            );
+
+          },
+          child: const Text("Modifier"),
+        ),
     );
   }
 }

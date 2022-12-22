@@ -33,7 +33,7 @@ class Api
   Uri _getUri({required String domain})
   {
     return Uri.http(
-      "192.168.0.71:8000",
+      "192.168.0.60:8000",
       "/api/$domain",
     );
   }
